@@ -22,14 +22,6 @@ a:hover {
   color: #535bf2;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -96,16 +88,50 @@ button:focus-visible {
 }
 
 /* Blog Post Manager Styling Starts here! */
-body .main {
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  gap: 2rem;
+}
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 1rem;
+  background-color: rgb(61, 61, 61);
+  width: 100%;
+}
+.main {
   display: flex;
   flex-direction: column;
 }
 
 #controls {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
 
   background-color: #1a1a1a;
+
+  gap: 1rem;
   padding: 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+input,
+textarea,
+select,
+button {
+  padding: 0.5rem;
+  font-size: 1rem;
 }
