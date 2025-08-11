@@ -1,5 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+html {
+  font-family: "Roboto", sans-serif;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
   line-height: 1.5;
   font-weight: 400;
 
@@ -20,11 +26,6 @@ a {
 }
 a:hover {
   color: #535bf2;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
 }
 
 #app {
@@ -98,6 +99,11 @@ body {
   min-height: 100vh;
   gap: 2rem;
 }
+
+h1 {
+  font-size: 9rem;
+}
+
 .header {
   display: flex;
   justify-content: center;
@@ -107,9 +113,12 @@ body {
   background-color: rgb(61, 61, 61);
   width: 100%;
 }
+
 .main {
   display: flex;
   flex-direction: column;
+
+  height: 100vh;
 }
 
 #controls {
@@ -120,6 +129,13 @@ body {
 
   gap: 1rem;
   padding: 1rem;
+}
+
+#posts {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .form {
