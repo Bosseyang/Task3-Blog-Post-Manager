@@ -96,8 +96,16 @@ button:focus-visible {
 }
 
 /* Blog Post Manager Styling Starts here! */
-
-.main {
+body .main {
   display: flex;
   flex-direction: column;
+}
+
+#controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #1a1a1a;
+  padding: 1rem;
 }
