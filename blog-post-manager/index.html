@@ -18,9 +18,21 @@
           <textarea id="content" placeholder="Content" required></textarea>
           <button type="submit">Add Post</button>
         </form>
+
+        <div id="filters">
+          <label for="sort">Sort by:</label>
+          <select id="sort">
+            <option value="date">Newest First</option>
+            <option value="author">Author (A–Z)</option>
+          </select>
+
+          <input type="text" id="filterAuthor" placeholder="Filter by author" />
+        </div>
       </section>
       <!-- <div id="app"></div>
       <script type="module" src="/src/main.ts"></script> -->
+      <section id="posts">Posts</section>
+      <script type="module" src="/main.ts"></script>
     </main>
     <footer class="footer">
       <p>&copy; 2025</p>
