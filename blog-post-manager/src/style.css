@@ -3,6 +3,10 @@
 html {
   font-family: "Roboto", sans-serif;
 }
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
 
 :root {
   /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
@@ -91,17 +95,17 @@ button:focus-visible {
 /* Blog Post Manager Styling Starts here! */
 
 body {
-  margin: 0;
   display: flex;
   flex-direction: column;
   place-items: center;
+
   min-width: 320px;
   min-height: 100vh;
   gap: 2rem;
 }
 
 h1 {
-  font-size: 9rem;
+  font-size: 3rem;
 }
 
 .header {
@@ -117,8 +121,22 @@ h1 {
 .main {
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   height: 100vh;
+  width: 80%;
+  gap: 2rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 1rem;
+  width: 100%;
+
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 #controls {
@@ -126,20 +144,50 @@ h1 {
   flex-direction: column;
 
   background-color: #1a1a1a;
+  border-radius: 1rem;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.3);
 
   gap: 1rem;
   padding: 1rem;
+
+  width: 60%;
 }
 
 #content {
-  min-width: 25rem;
+  min-width: 100%;
+  max-width: 100%;
   min-height: 5rem;
 }
 
 #posts {
-  padding: 1rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+
+  padding: 1rem;
+  gap: 1rem;
+  background-color: #88888886;
+  border-radius: 1rem;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.3);
+
+  height: 100vh;
+  width: 60%;
+}
+#posts #posts-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 1rem;
+}
+
+#filters {
+  display: flex;
+  flex-wrap: wrap;
+
+  align-items: center;
+  justify-content: center;
+
   gap: 1rem;
 }
 
@@ -155,4 +203,39 @@ select,
 button {
   padding: 0.5rem;
   font-size: 1rem;
+}
+
+.post-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 1rem;
+  border: 0.1rem solid #213547;
+
+  gap: 0.5rem;
+}
+
+/* Responsiveness styling for mobile */
+@media screen and (max-width: 1024px) {
+  .main {
+    width: 90%;
+  }
+
+  #controls {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  #posts {
+    width: 100%;
+  }
+}
+
+/* Responsiveness styling for desktop */
+.main {
+  width: 80%;
 }
