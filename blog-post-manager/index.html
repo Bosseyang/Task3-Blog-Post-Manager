@@ -4,23 +4,31 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="./src/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog Post Manager</title>
   </head>
 
   <body>
-    <header class="header" id="header">Blog Post Manager</header>
+    <header class="header" id="header"><h1>Blog Post Manager</h1></header>
     <main class="main">
       <section class="controls" id="controls">
         <form class="form" id="postForm">
           <input type="text" id="title" placeholder="Title" required />
           <input type="text" id="author" placeholder="Author" required />
           <textarea id="content" placeholder="Content" required></textarea>
-          <button type="submit">Add Post</button>
+
+          <button class="post-button" type="submit">
+            <span class="material-symbols-outlined"> post_add </span>Add Post
+          </button>
         </form>
 
         <div id="filters">
           <label for="sort">Sort by:</label>
+
           <select id="sort">
             <option value="date">Newest First</option>
             <option value="author">Author (A–Z)</option>
@@ -31,7 +39,12 @@
       </section>
       <!-- <div id="app"></div>
       <script type="module" src="/src/main.ts"></script> -->
-      <section id="posts">Posts</section>
+      <section id="posts">
+        <header id="posts-header">
+          <span id="post-symbol" class="material-symbols-outlined"> post </span>
+          <h1>Posts</h1>
+        </header>
+      </section>
       <script type="module" src="/main.ts"></script>
     </main>
     <footer class="footer">
