@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link rel="stylesheet" href="./src/style.css" />
+    <link rel="stylesheet" href="./src/css/style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
@@ -25,17 +25,6 @@
             <span class="material-symbols-outlined"> post_add </span>Add Post
           </button>
         </form>
-
-        <div id="filters">
-          <label for="sort">Sort by:</label>
-
-          <select id="sort">
-            <option value="date">Newest First</option>
-            <option value="author">Author (A–Z)</option>
-          </select>
-
-          <input type="text" id="filterAuthor" placeholder="Filter by author" />
-        </div>
       </section>
       <!-- <div id="app"></div>
       <script type="module" src="/src/main.ts"></script> -->
@@ -44,6 +33,14 @@
           <span id="post-symbol" class="material-symbols-outlined"> post </span>
           <h1>Posts</h1>
         </header>
+        <div id="filters">
+          <label for="sort">Sort by:</label>
+          <select id="sort">
+            <option value="date">Newest First</option>
+            <option value="author">Author (A–Z)</option>
+          </select>
+          <input type="text" id="filterAuthor" placeholder="Filter by author" />
+        </div>
       </section>
       <script type="module" src="/main.ts"></script>
     </main>
