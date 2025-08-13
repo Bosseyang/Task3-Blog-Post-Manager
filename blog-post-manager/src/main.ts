@@ -5,9 +5,9 @@ import { v4 as generateId } from "uuid";
 // Use "import type" when importing interfaces or types to tell TS
 import type { IPost } from "./types";
 
-const app = document.querySelector<HTMLElement>("#app")!;
+const postsContainer = document.querySelector<HTMLElement>("#posts")!;
 
-app.innerHTML = /*html*/ `
+postsContainer.innerHTML = /*html*/ `
   <section class="post-list"></section>
 `;
 
@@ -16,6 +16,9 @@ const postListEl = document.querySelector<HTMLElement>(".post-list")!;
 const inputTitleEl = document.querySelector<HTMLInputElement>("#title")!;
 const inputAuthorEl = document.querySelector<HTMLInputElement>("#author")!;
 const inputContentEl = document.querySelector<HTMLTextAreaElement>("#content")!;
+const filterAuthorInput =
+  document.querySelector<HTMLInputElement>("#filterAuthor")!;
+const sortSelect = document.querySelector<HTMLSelectElement>("#sort")!;
 
 let posts: IPost[] = loadPosts();
 
@@ -30,17 +33,19 @@ formEl?.addEventListener("submit", (e) => {
     timestamp: Date.now(),
   };
 
-  const newPostEl = creatNewPostEl(newPost);
+  const newPostEl = createNewPostEl(newPost);
   postListEl.insertAdjacentElement("afterbegin", newPostEl);
 
-  posts.push(newPost);
+  posts.unshift(newPost);
   savePosts();
+  renderPosts();
   formEl.reset();
 });
 
 postListEl.addEventListener("click", (e) => handleOnClick(e));
 
-populatePostListWithDummys();
+// populatePostListWithDummys();
+renderPosts();
 
 // ################### Functions below #################
 function loadPosts(): IPost[] {
@@ -52,7 +57,28 @@ function savePosts() {
   localStorage.setItem("posts", JSON.stringify(posts));
 }
 
-function creatNewPostEl(post: IPost): HTMLElement {
+function renderPosts() {
+  postListEl.innerHTML = "";
+
+  const filterValue = filterAuthorInput.value.toLowerCase();
+  const sortedPosts = [...posts].sort((a, b) => {
+    if (sortSelect.value === "date") {
+      return b.timestamp - a.timestamp;
+    } else {
+      return a.author.localeCompare(b.author);
+    }
+  });
+
+  const filteredPosts = sortedPosts.filter((p) =>
+    p.author.toLowerCase().includes(filterValue)
+  );
+
+  filteredPosts.forEach((post) => {
+    postListEl.appendChild(createNewPostEl(post));
+  });
+}
+
+function createNewPostEl(post: IPost): HTMLElement {
   //Deconstructing an object
   const { id, author, title, content, timestamp } = post;
   const classes = ["post"];
@@ -77,9 +103,8 @@ function creatNewPostEl(post: IPost): HTMLElement {
       <p class="post-author">${author}</p>
       <p class="post-content">${content}</p>
       <p class="post-timestamp">${new Date(timestamp).toLocaleString()}</p>
-      </article>
+    </article>
   `;
-
   return newPostEl;
 }
 
@@ -97,12 +122,16 @@ function handleOnClick(event: MouseEvent): void {
 
 function populatePostListWithDummys(): void {
   dummyPosts.forEach((t) => {
-    postListEl.insertAdjacentElement("beforeend", creatNewPostEl(t));
+    postListEl.insertAdjacentElement("beforeend", createNewPostEl(t));
   });
 }
 
 function removePost(postEl: HTMLElement): void {
-  postListEl.removeChild(postEl);
+  const id = postEl.id;
+  posts = posts.filter((p) => p.id != id);
+  savePosts();
+  renderPosts();
+  // postListEl.removeChild(postEl);
 }
 
 // function updatePost(postEl: HTMLElement): void {}
