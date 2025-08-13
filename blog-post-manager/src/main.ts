@@ -5,15 +5,10 @@ import { v4 as generateId } from "uuid";
 // Use "import type" when importing interfaces or types to tell TS
 import type { IPost } from "./types";
 
-const app = document.querySelector<HTMLDivElement>("#app")!;
+const app = document.querySelector<HTMLElement>("#app")!;
 
 app.innerHTML = /*html*/ `
-<main>
-  <h1 class="post-title">Post</h1>
-  <article class="author"></article>
-  <article class="content"></article>
   <section class="post-list"></section>
-</main>
 `;
 
 const formEl = document.querySelector<HTMLFormElement>(".form");
@@ -21,8 +16,6 @@ const postListEl = document.querySelector<HTMLElement>(".post-list")!;
 const inputTitleEl = document.querySelector<HTMLInputElement>("#title")!;
 const inputAuthorEl = document.querySelector<HTMLInputElement>("#author")!;
 const inputContentEl = document.querySelector<HTMLTextAreaElement>("#content")!;
-
-const postsContainer = document.querySelector<HTMLDivElement>("posts")!;
 
 let posts: IPost[] = loadPosts();
 
@@ -39,9 +32,10 @@ formEl?.addEventListener("submit", (e) => {
 
   const newPostEl = creatNewPostEl(newPost);
   postListEl.insertAdjacentElement("afterbegin", newPostEl);
-  inputTitleEl.value = "";
-  inputAuthorEl.value = "";
-  inputContentEl.value = "";
+
+  posts.push(newPost);
+  savePosts();
+  formEl.reset();
 });
 
 postListEl.addEventListener("click", (e) => handleOnClick(e));
@@ -68,18 +62,22 @@ function creatNewPostEl(post: IPost): HTMLElement {
   newPostEl.classList.add(...classes);
 
   newPostEl.innerHTML = /*html*/ `
-    <p class="post-title">${title}</p>
-    <p class="post-author">${author}</p>
-    <p class="post-content">${content}</p>
-    <p class="post-timestamp">${timestamp}</p>
-    <div class="action-buttons">
-      <button class="edit-btn" type="button">
-        <span class="material-symbols-outlined">edit</span>
-      </button>
-      <button class="remove-btn" type="button">
-        <span class="material-symbols-outlined">delete</span>
-      </button>
-    </div>
+    <article class="post-container">
+      <div class="title-btn-container">
+        <p class="post-title">${title}</p>
+        <div class="action-buttons">
+          <button class="icon-button edit-btn" type="button" title="edit">
+            <span class=" material-symbols-outlined">edit</span>
+          </button>
+          <button class="icon-button remove-btn" type="button" title="delete">
+            <span class="material-symbols-outlined">delete</span>
+          </button>
+        </div>
+      </div>
+      <p class="post-author">${author}</p>
+      <p class="post-content">${content}</p>
+      <p class="post-timestamp">${new Date(timestamp).toLocaleString()}</p>
+      </article>
   `;
 
   return newPostEl;
