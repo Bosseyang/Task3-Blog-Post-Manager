@@ -75,36 +75,6 @@ function renderPosts() {
   });
 }
 
-function createNewPostEl(post: IPost): HTMLElement {
-  //Deconstructing an object
-  const { id, author, title, content, timestamp } = post;
-  const classes = ["post"];
-
-  const newPostEl = document.createElement("article");
-  newPostEl.id = String(id);
-  newPostEl.classList.add(...classes);
-
-  newPostEl.innerHTML = /*html*/ `
-    <article class="post-container">
-      <div class="title-btn-container">
-        <p class="post-title">${title}</p>
-        <div class="action-buttons">
-          <button class="icon-button edit-btn" type="button" title="edit">
-            <span class=" material-symbols-outlined">edit</span>
-          </button>
-          <button class="icon-button remove-btn" type="button" title="delete">
-            <span class="material-symbols-outlined">delete</span>
-          </button>
-        </div>
-      </div>
-      <p class="post-author">${author}</p>
-      <p class="post-content">${content}</p>
-      <p class="post-timestamp">${new Date(timestamp).toLocaleString()}</p>
-    </article>
-  `;
-  return newPostEl;
-}
-
 function handleOnClick(event: MouseEvent): void {
   const target = event.target;
 
