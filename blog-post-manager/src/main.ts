@@ -1,9 +1,13 @@
 import "./css/style.css";
 import { dummyPosts } from "./data";
-import { v4 as generateId } from "uuid";
+
+import { createNewPostEl } from "./ts/createNewPost";
+import { handleFormSubmit } from "./ts/handleFormSubmit";
 
 // Use "import type" when importing interfaces or types to tell TS
 import type { IPost } from "./types";
+
+export let posts: IPost[] = loadPosts();
 
 const postsContainer = document.querySelector<HTMLElement>("#posts")!;
 
@@ -11,27 +15,26 @@ postsContainer.innerHTML = /*html*/ `
   <section class="post-list"></section>
 `;
 
-const formEl = document.querySelector<HTMLFormElement>(".form");
-const postListEl = document.querySelector<HTMLElement>(".post-list")!;
-const inputTitleEl = document.querySelector<HTMLInputElement>("#title")!;
-const inputAuthorEl = document.querySelector<HTMLInputElement>("#author")!;
-const inputContentEl = document.querySelector<HTMLTextAreaElement>("#content")!;
+export const formEl = document.querySelector<HTMLFormElement>(".form");
+export const postListEl = document.querySelector<HTMLElement>(".post-list")!;
+
 const filterAuthorInput =
   document.querySelector<HTMLInputElement>("#filterAuthor")!;
 const sortSelect = document.querySelector<HTMLSelectElement>("#sort")!;
 
-let posts: IPost[] = loadPosts();
+// formEl?.addEventListener("submit", (e) => {
+//   e.preventDefault();
 
-formEl?.addEventListener("submit", (e) => {
-  e.preventDefault();
+//   const newPost: IPost = {
+//     id: generateId(),
+//     title: inputTitleEl.value,
+//     author: inputAuthorEl.value,
+//     content: inputContentEl.value,
+//     timestamp: Date.now(),
+//   };
 
-  const newPost: IPost = {
-    id: generateId(),
-    title: inputTitleEl.value,
-    author: inputAuthorEl.value,
-    content: inputContentEl.value,
-    timestamp: Date.now(),
-  };
+//   const newPostEl = createNewPostEl(newPost);
+//   postListEl.insertAdjacentElement("afterbegin", newPostEl);
 
 //   posts.unshift(newPost);
 //   savePosts();
@@ -39,8 +42,10 @@ formEl?.addEventListener("submit", (e) => {
 //   formEl.reset();
 // });
 
+formEl?.addEventListener("submit", handleFormSubmit);
 postListEl.addEventListener("click", (e) => handleOnClick(e));
-
+sortSelect.addEventListener("change", renderPosts);
+filterAuthorInput.addEventListener("input", renderPosts);
 // populatePostListWithDummys();
 renderPosts();
 
@@ -50,11 +55,11 @@ function loadPosts(): IPost[] {
   return data ? JSON.parse(data) : [];
 }
 
-function savePosts() {
+export function savePosts() {
   localStorage.setItem("posts", JSON.stringify(posts));
 }
 
-function renderPosts() {
+export function renderPosts() {
   postListEl.innerHTML = "";
 
   const filterValue = filterAuthorInput.value.toLowerCase();
