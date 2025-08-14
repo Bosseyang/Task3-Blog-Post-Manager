@@ -85,6 +85,23 @@ function handleOnClick(event: MouseEvent): void {
   if (postEl === null) return;
 
   if (target.closest(".remove-btn")) return removePost(postEl);
+
+  if (target.closest(".edit-btn")) {
+    const postId = postEl.id;
+    const post = posts.find((p) => p.id === postId);
+    if (!post) return;
+
+    const newTitle = prompt("Edit Title:", post.title) ?? post.title;
+    const newAuthor = prompt("Edit Author:", post.author) ?? post.author;
+    const newContent = prompt("Edit Content:", post.content) ?? post.content;
+
+    post.title = newTitle.trim() || post.title;
+    post.author = newAuthor.trim() || post.author;
+    post.content = newContent.trim() || post.content;
+
+    savePosts();
+    renderPosts();
+  }
 }
 
 function populatePostListWithDummys(): void {
