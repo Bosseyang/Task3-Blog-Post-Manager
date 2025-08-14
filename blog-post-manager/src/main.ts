@@ -33,14 +33,11 @@ formEl?.addEventListener("submit", (e) => {
     timestamp: Date.now(),
   };
 
-  const newPostEl = createNewPostEl(newPost);
-  postListEl.insertAdjacentElement("afterbegin", newPostEl);
-
-  posts.unshift(newPost);
-  savePosts();
-  renderPosts();
-  formEl.reset();
-});
+//   posts.unshift(newPost);
+//   savePosts();
+//   renderPosts();
+//   formEl.reset();
+// });
 
 postListEl.addEventListener("click", (e) => handleOnClick(e));
 
