@@ -93,6 +93,11 @@
   justify-content: space-between;
   align-items: center;
 }
+.post-author {
+}
+h1.post-title {
+  font-size: 2rem;
+}
 
 /* Responsiveness Mobile */
 /* Responsiveness styling for tablet */
