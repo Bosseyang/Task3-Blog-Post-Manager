@@ -3,6 +3,7 @@ import { dummyPosts } from "./data";
 
 import { createNewPostEl } from "./ts/createNewPost";
 import { handleFormSubmit } from "./ts/handleFormSubmit";
+import { renderPosts } from "./ts/renderPosts";
 
 // Use "import type" when importing interfaces or types to tell TS
 import type { IPost } from "./types";
@@ -10,15 +11,13 @@ import type { IPost } from "./types";
 export let posts: IPost[] = loadPosts();
 
 const postsContainer = document.querySelector<HTMLElement>("#posts")!;
-
 postsContainer.innerHTML = /*html*/ `
   <section class="post-list"></section>
 `;
 
 export const formEl = document.querySelector<HTMLFormElement>(".form");
 export const postListEl = document.querySelector<HTMLElement>(".post-list")!;
-
-const filterAuthorInput =
+export const filterAuthorInput =
   document.querySelector<HTMLInputElement>("#filterAuthor")!;
 export const sortSelect = document.querySelector<HTMLSelectElement>("#sort")!;
 
@@ -26,7 +25,7 @@ formEl?.addEventListener("submit", handleFormSubmit);
 postListEl.addEventListener("click", (e) => handleOnClick(e));
 sortSelect.addEventListener("change", renderPosts);
 filterAuthorInput.addEventListener("input", renderPosts);
-// populatePostListWithDummys();
+populatePostListWithDummys();
 renderPosts();
 
 // ################### Functions below #################
@@ -82,4 +81,3 @@ function removePost(postEl: HTMLElement): void {
   // postListEl.removeChild(postEl);
 }
 
-// function updatePost(postEl: HTMLElement): void {}
