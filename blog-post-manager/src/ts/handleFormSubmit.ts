@@ -1,5 +1,6 @@
 import { v4 as generateId } from "uuid";
-import { postListEl, posts, savePosts, renderPosts, formEl } from "../main";
+import { postListEl, posts, savePosts, formEl } from "../main";
+import { renderPosts } from "./renderPosts";
 import type { IPost } from "../types";
 import { createNewPostEl } from "./createNewPost";
 
