@@ -14,10 +14,10 @@ export function createNewPostEl(post: IPost): HTMLElement {
       <div class="title-btn-container">
         <h1 class="post-title">${title}</h1>
         <div class="action-buttons">
-          <button class="icon-button edit-btn" type="button" title="edit">
+          <button class="button icon-button edit-btn" type="button" title="edit">
             <span class=" material-symbols-outlined">edit</span>
           </button>
-          <button class="icon-button remove-btn" type="button" title="delete">
+          <button class="button icon-button remove-btn" type="button" title="delete">
             <span class="material-symbols-outlined">delete</span>
           </button>
         </div>
