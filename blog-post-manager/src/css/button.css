@@ -1,0 +1,62 @@
+.post-button {
+  border-radius: 1rem;
+  border: 0.1rem solid #213547;
+}
+
+.add-new-post-btn {
+  position: absolute;
+  right: 2rem;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 0.5rem;
+  width: fit-content;
+
+  border-radius: 8px;
+  border: 1px solid gray;
+
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #121212;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+.button:hover {
+  border-color: #646cff;
+  background-color: rgba(211, 211, 211, 0.3);
+}
+.button:focus,
+.button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.icon-button {
+  width: 36px;
+  height: 36px;
+}
+
+.close-form-btn {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  right: -18px;
+  top: -18px;
+}
+
+@media screen and (max-width: 450px) {
+  .add-new-post-btn {
+    position: relative;
+    right: auto;
+  }
+}
