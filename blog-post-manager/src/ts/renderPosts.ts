@@ -1,5 +1,6 @@
-import { postListEl, sortSelect, filterAuthorInput, posts } from "../main";
+import { postListEl, sortSelect, filterAuthorInput } from "../main";
 import { createNewPostEl } from "./createNewPost";
+import { posts } from "./manipulatePosts";
 
 export function renderPosts() {
   postListEl.innerHTML = "";
