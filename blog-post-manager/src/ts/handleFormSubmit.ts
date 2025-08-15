@@ -1,8 +1,9 @@
-import { v4 as generateId } from "uuid";
-import { postListEl, posts, savePosts, formEl } from "../main";
-import { renderPosts } from "./renderPosts";
 import type { IPost } from "../types";
+import { v4 as generateId } from "uuid";
+import { postListEl, formEl } from "../main";
+import { renderPosts } from "./renderPosts";
 import { createNewPostEl } from "./createNewPost";
+import { savePosts, posts } from "./manipulatePosts";
 
 export function handleFormSubmit(e: Event): void {
   e.preventDefault();
