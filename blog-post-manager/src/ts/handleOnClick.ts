@@ -1,4 +1,5 @@
 import { removePost, editPost } from "./manipulatePosts";
+// import { formContainerEl, insidePostBtn } from "../main";
 
 export function handleOnClick(event: MouseEvent): void {
   const target = event.target;
@@ -11,4 +12,14 @@ export function handleOnClick(event: MouseEvent): void {
 
   if (target.closest(".remove-btn")) return removePost(postEl);
   if (target.closest(".edit-btn")) return editPost(postEl);
+
+  //   if (target.closest(".add-new-post-btn")) {
+  //     formContainerEl?.classList.toggle("hidden");
+  //     return;
+  //   }
+
+  //   if (target.closest(".close-form-btn")) {
+  //     formContainerEl?.classList.toggle("hidden");
+  //     return;
+  //   }
 }
