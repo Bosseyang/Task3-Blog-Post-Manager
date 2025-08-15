@@ -93,13 +93,10 @@
   justify-content: space-between;
   align-items: center;
 }
-.post-author {
-}
 h1.post-title {
   font-size: 2rem;
 }
 
-/* Responsiveness Mobile */
 /* Responsiveness styling for tablet */
 @media screen and (max-width: 1024px) {
   .post-list {
@@ -110,5 +107,18 @@ h1.post-title {
   }
   #posts-container {
     width: 100%;
+  }
+}
+
+/* Responsiveness Mobile */
+@media screen and (max-width: 450px) {
+  #posts-container {
+    padding: 0.5rem;
+  }
+  .post {
+    padding: 0.5rem;
+  }
+  h1.post-title {
+    font-size: 1.5rem;
   }
 }
