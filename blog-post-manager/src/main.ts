@@ -20,27 +20,7 @@ export const postListEl = document.querySelector<HTMLElement>(".post-list")!;
 
 const filterAuthorInput =
   document.querySelector<HTMLInputElement>("#filterAuthor")!;
-const sortSelect = document.querySelector<HTMLSelectElement>("#sort")!;
-
-// formEl?.addEventListener("submit", (e) => {
-//   e.preventDefault();
-
-//   const newPost: IPost = {
-//     id: generateId(),
-//     title: inputTitleEl.value,
-//     author: inputAuthorEl.value,
-//     content: inputContentEl.value,
-//     timestamp: Date.now(),
-//   };
-
-//   const newPostEl = createNewPostEl(newPost);
-//   postListEl.insertAdjacentElement("afterbegin", newPostEl);
-
-//   posts.unshift(newPost);
-//   savePosts();
-//   renderPosts();
-//   formEl.reset();
-// });
+export const sortSelect = document.querySelector<HTMLSelectElement>("#sort")!;
 
 formEl?.addEventListener("submit", handleFormSubmit);
 postListEl.addEventListener("click", (e) => handleOnClick(e));
