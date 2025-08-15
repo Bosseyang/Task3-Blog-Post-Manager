@@ -152,10 +152,10 @@ button {
   gap: 0.5rem;
 }
 
-/* Responsiveness styling for mobile */
-@media screen and (max-width: 450px) {
+/* Responsiveness styling for small desktop */
+@media screen and (max-width: 1280px) {
   .main {
-    width: 90%;
+    width: 80%;
   }
 }
 
@@ -174,9 +174,9 @@ button {
   }
 }
 
-/* Responsiveness styling for small desktop */
-@media screen and (max-width: 1280px) {
+/* Responsiveness styling for mobile */
+@media screen and (max-width: 450px) {
   .main {
-    width: 80%;
+    width: 95%;
   }
 }
