@@ -1,14 +1,7 @@
 import "./css/style.css";
-import { dummyPosts } from "./data";
-
-import { createNewPostEl } from "./ts/createNewPost";
 import { handleFormSubmit } from "./ts/handleFormSubmit";
 import { renderPosts } from "./ts/renderPosts";
-
-// Use "import type" when importing interfaces or types to tell TS
-import type { IPost } from "./types";
-
-export let posts: IPost[] = loadPosts();
+import { handleOnClick } from "./ts/handleOnClick";
 
 const postsContainer = document.querySelector<HTMLElement>("#posts")!;
 postsContainer.innerHTML = /*html*/ `
@@ -25,59 +18,7 @@ formEl?.addEventListener("submit", handleFormSubmit);
 postListEl.addEventListener("click", (e) => handleOnClick(e));
 sortSelect.addEventListener("change", renderPosts);
 filterAuthorInput.addEventListener("input", renderPosts);
-populatePostListWithDummys();
+// populatePostListWithDummys();
 renderPosts();
 
 // ################### Functions below #################
-function loadPosts(): IPost[] {
-  const data = localStorage.getItem("posts");
-  return data ? JSON.parse(data) : [];
-}
-
-export function savePosts() {
-  localStorage.setItem("posts", JSON.stringify(posts));
-}
-
-function handleOnClick(event: MouseEvent): void {
-  const target = event.target;
-
-  // Need this syntax to be typesafe. Looks odd but it gets the job done.
-  if (!(target instanceof HTMLElement)) return;
-
-  const postEl = target.closest<HTMLElement>(".post");
-  if (postEl === null) return;
-
-  if (target.closest(".remove-btn")) return removePost(postEl);
-
-  if (target.closest(".edit-btn")) {
-    const postId = postEl.id;
-    const post = posts.find((p) => p.id === postId);
-    if (!post) return;
-
-    const newTitle = prompt("Edit Title:", post.title) ?? post.title;
-    const newAuthor = prompt("Edit Author:", post.author) ?? post.author;
-    const newContent = prompt("Edit Content:", post.content) ?? post.content;
-
-    post.title = newTitle.trim() || post.title;
-    post.author = newAuthor.trim() || post.author;
-    post.content = newContent.trim() || post.content;
-
-    savePosts();
-    renderPosts();
-  }
-}
-
-function populatePostListWithDummys(): void {
-  dummyPosts.forEach((t) => {
-    postListEl.insertAdjacentElement("beforeend", createNewPostEl(t));
-  });
-}
-
-function removePost(postEl: HTMLElement): void {
-  const id = postEl.id;
-  posts = posts.filter((p) => p.id != id);
-  savePosts();
-  renderPosts();
-  // postListEl.removeChild(postEl);
-}
-
