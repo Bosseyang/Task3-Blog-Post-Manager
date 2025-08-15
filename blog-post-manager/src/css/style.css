@@ -130,7 +130,14 @@ h1 {
 .form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   gap: 0.5rem;
+}
+.form #author,
+.form #title {
+  width: 100%;
 }
 
 input,
@@ -150,6 +157,7 @@ button {
   border: 0.1rem solid #213547;
 
   gap: 0.5rem;
+  width: fit-content;
 }
 
 /* Responsiveness styling for small desktop */
