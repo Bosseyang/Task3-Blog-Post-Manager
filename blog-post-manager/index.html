@@ -15,21 +15,36 @@
   <body>
     <header class="header" id="header"><h1>Blog Post Manager</h1></header>
     <main class="main">
-      <section class="controls" id="controls">
+      <section class="form-container hidden" id="form-container">
+        <button class="button close-form-btn" title="close">
+          <span class="material-symbols-outlined"> close </span>
+        </button>
         <form class="form" id="postForm">
           <input type="text" id="title" placeholder="Title" required />
           <input type="text" id="author" placeholder="Author" required />
           <textarea id="content" placeholder="Content" required></textarea>
 
-          <button class="post-button" type="submit">
+          <button class="button post-button" type="submit" title="add post">
             <span class="material-symbols-outlined"> post_add </span>Add Post
           </button>
         </form>
       </section>
       <section id="posts-container">
         <header id="posts-header">
-          <span id="post-symbol" class="material-symbols-outlined"> post </span>
-          <h1>Posts</h1>
+          <span class="posts-header-symbol">
+            <span id="post-symbol" class="material-symbols-outlined">
+              post
+            </span>
+            <h1>Posts</h1>
+          </span>
+          <button
+            type="toggle"
+            class="button add-new-post-btn"
+            title="add new post"
+          >
+            <span class="material-symbols-outlined"> post_add </span>
+            <p class="inside-post-btn">Add New Post</p>
+          </button>
         </header>
         <div id="filters">
           <label for="sort">Sort by:</label>
